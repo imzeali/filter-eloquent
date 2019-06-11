@@ -1,11 +1,11 @@
 {
-    "name": "zeali/filter-eloquent",
+    "name": "imzeali/filter-eloquent",
     "description": "A eloquent orm filter",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "zeali",
+            "name": "imzeali",
             "email": "zealiemai@gmail.com"
         }
     ],
