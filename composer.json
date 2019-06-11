@@ -1,0 +1,18 @@
+{
+    "name": "zeali/filter-eloquent",
+    "description": "A eloquent orm filter",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zeali",
+            "email": "zealiemai@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FilterEloquent\\": "src/"
+        }
+    },
+    "minimum-stability": "alpha"
+}
