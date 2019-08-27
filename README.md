@@ -24,15 +24,15 @@ $q syntax：{field name}__{operator}={query condition}
 Basis query：
 ```php
 $q = 'id__eq=100';
-$query = new Filter(new User(), $q)->filteredQuery()->get();
+new Filter(new User(), $q)->filteredQuery();
 //Equivalent to
-User::where('id',1)->get();
+User::where('id',1);
 ```
 
 Multiple query conditions：
 ```php
 $q = 'id__gt=100,name__like=%baby%';
-$query = new Filter(new User(), $q)->filteredQuery()->get();
+new Filter(new User(), $q)->filteredQuery();
 //Equivalent to
 User::where('id', ‘>’, ‘100’)->where('name','like','%baby%');
 ```
@@ -40,7 +40,7 @@ User::where('id', ‘>’, ‘100’)->where('name','like','%baby%');
 Model query conditions
 ```php
 $q = 'user.city__gt=Fuzhou';
-$query = new Filter(new User(), $q)->filteredQuery()->get();
+new Filter(new Article(), $q)->filteredQuery();
 //Equivalent to
 Article::whereHas('user', function ($query){
     $query->where('city', '=', 'Fuzhou');
