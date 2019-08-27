@@ -68,7 +68,7 @@ class Filter
     {
         $column = array_last($field);
         array_pop($field);
-        $_field = implode("->", $field);
+        $_field = implode(".", $field);
 
 
         if (in_array($operator, ['whereIn', 'whereNotIn'])) {
