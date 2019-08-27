@@ -21,6 +21,8 @@ composer install imzeali/filter-eloquent
 ### Usage
 $q syntax：{field name}__{operator}={query condition}
 
+$q can be spliced by the client
+
 Basis query：
 ```php
 $q = 'id__eq=100';
