@@ -12,7 +12,6 @@ use Exception;
 
 /**
  * 通用查询器
- * http://md.baby-bus.com/web/#/16?page_id=1187
  * Class Filter
  * @package App\HttpCore
  */
@@ -20,7 +19,6 @@ class Filter
 {
     public $query;
     public $q;
-    public $model;
     public $operator_mapping = [
         '' => '=',      // 等于
         'eq' => '=',    // 等于
@@ -34,9 +32,8 @@ class Filter
         'not_in' => 'whereNotIn' // NOT IN
     ];
 
-    public function __construct($model, $query, $q)
+    public function __construct($query, $q)
     {
-        $this->model = $model;
         $this->query = $query;
         $this->q = $q;
     }
