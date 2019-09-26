@@ -45,6 +45,10 @@ class Filter
             $field = $q[0];
             $operator = $q[1];
             $value = $q[2];
+            
+            if ($operator == 'like') {
+                $value = "%$value%";
+            }
             if (!$value == '') {
                 if (is_array($field)) {
                     $this->associatedQuery($field, $operator, $value);
