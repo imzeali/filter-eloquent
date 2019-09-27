@@ -41,14 +41,17 @@ class Filter
     public function filteredQuery()
     {
         $qs = $this->getFilterParams();
+
         foreach ($qs as $q) {
             $field = $q[0];
             $operator = $q[1];
+
             $value = $q[2];
-            
+
             if ($operator == 'like') {
                 $value = "%$value%";
             }
+
             if (!$value == '') {
                 if (is_array($field)) {
                     $this->associatedQuery($field, $operator, $value);
@@ -119,7 +122,9 @@ class Filter
         }
 
         foreach ($qs as $queries) {
-            array_push($res, $this->querystringProcessor(trim($queries)));
+            if(!empty($queries) && !is_null($queries = $this->querystringProcessor(trim($queries)))){
+                array_push($res, $queries);
+            }
         }
         return $res;
     }
@@ -132,27 +137,31 @@ class Filter
     private function querystringProcessor($queries)
     {
         $queries_explode = explode('=', $queries);
-        try {
-            $key = $queries_explode[0];
-            $value = $queries_explode[1];
-            if (strpos($key, '__')) {
-                $key_explode = explode('__', $key);
-                $field = $key_explode[0];
-                $operator = $key_explode[1];
+        if(count($queries_explode)==2){
+            try {
+                $key = $queries_explode[0];
+                $value = $queries_explode[1];
 
-            } else {
-                $field = $key;
-                $operator = '';
+                if (strpos($key, '__')) {
+                    $key_explode = explode('__', $key);
+                    $field = $key_explode[0];
+                    $operator = $key_explode[1];
+
+                } else {
+                    $field = $key;
+                    $operator = '';
+                }
+
+                return [
+                    $this->fieldProcessor($field, $operator, $value),
+                    $this->operatorProcessor($field, $operator, $value),
+                    $this->valueProcessor($field, $operator, $value),
+                ];
+            } catch (Exception $e) {
+                return $e;
             }
-
-            return [
-                $this->fieldProcessor($field, $operator, $value),
-                $this->operatorProcessor($field, $operator, $value),
-                $this->valueProcessor($field, $operator, $value),
-            ];
-        } catch (Exception $e) {
-            return $e;
         }
+
     }
 
     /**
