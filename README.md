@@ -41,7 +41,7 @@ User::where('id', ‘>’, ‘100’)->where('name','like','%baby%');
 
 Model query conditions
 ```php
-$q = 'user.city__gt=Fuzhou';
+$q = 'user.city__eq=Fuzhou';
 new Filter(new Article(), $q)->filteredQuery();
 //Equivalent to
 Article::whereHas('user', function ($query){
