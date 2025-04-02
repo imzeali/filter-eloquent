@@ -27,7 +27,7 @@ Basis query：
 ```php
 $q = 'id__eq=100';
 new Filter(new User(), $q)->filteredQuery();
-//Equivalent to
+//mean
 User::where('id',1);
 ```
 
@@ -35,16 +35,15 @@ Multiple query conditions：
 ```php
 $q = 'id__gt=100,name__like=%baby%';
 new Filter(new User(), $q)->filteredQuery();
-//Equivalent to
-User::where('id', ‘>’, ‘100’)->where('name','like','%baby%');
+//User::where('id', ‘>’, ‘100’)->where('name','like','%baby%');
+
 ```
 
 Model query conditions
 ```php
 $q = 'user.city__eq=Fuzhou';
 new Filter(new Article(), $q)->filteredQuery();
-//Equivalent to
-Article::whereHas('user', function ($query){
-    $query->where('city', '=', 'Fuzhou');
-});
+//Article::whereHas('user', function ($query){
+//    $query->where('city', '=', 'Fuzhou');
+//});
 ```
